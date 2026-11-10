@@ -1,0 +1,13 @@
+Hafiz Online Bazar - Android APK
+
+دا پروژه Android لپاره ده. د APK د جوړولو لپاره کمپیوټر، انټرنېټ او Expo حساب اړين دي.
+
+1. Node.js LTS نصب کړئ.
+2. په دې فولډر کې terminal پرانیزئ.
+3. npm install
+4. npx eas-cli login
+5. npx eas-cli build:configure --platform android
+6. npx eas-cli build --platform android --profile preview
+
+EAS به د Android APK لپاره د ډاونلوډ لینک درکړي.
+توجه: دا یوازې ازمایښتي اپلېکېشن دی؛ واقعي تادیات او فرمایشونه نه لېږدوي.
