@@ -1,4 +1,4 @@
-name: Build Android Debug APK
+name: Build Standalone Android APK
 on:
   push:
     branches: [main]
@@ -17,21 +17,22 @@ jobs:
         with:
           distribution: temurin
           java-version: '17'
-      # GitHub Ubuntu runners already provide the Android SDK.
-      # Avoid android-actions/setup-android@v3: it attempts to install the removed "tools" package.
-      - name: Check Android SDK
-        run: |
-          echo "ANDROID_HOME=$ANDROID_HOME"
-          test -d "$ANDROID_HOME"
+      - name: Verify Android SDK
+        run: test -d "$ANDROID_HOME"
       - name: Install dependencies
         run: npm install
       - name: Generate native Android project
         run: npx expo prebuild --platform android --non-interactive --clean
-      - name: Build installable debug APK
-        run: cd android && chmod +x gradlew && ./gradlew :app:assembleDebug --no-daemon
-      - uses: actions/upload-artifact@v4
-        if: success()
+      - name: Build standalone release APK with embedded JS bundle
+        env:
+          NODE_ENV: production
+        run: |
+          cd android
+          chmod +x gradlew
+          ./gradlew :app:assembleRelease --no-daemon --stacktrace
+      - name: Upload standalone release APK
+        uses: actions/upload-artifact@v4
         with:
-          name: Hafiz-Online-Bazar-Debug-APK
-          path: android/app/build/outputs/apk/debug/*.apk
+          name: Hafiz-Online-Bazar-Standalone-APK
+          path: android/app/build/outputs/apk/release/*.apk
           if-no-files-found: error
