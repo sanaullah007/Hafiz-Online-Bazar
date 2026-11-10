@@ -8,24 +8,8 @@
     "userInterfaceStyle": "light",
     "android": {
       "package": "com.hafiz.onlinebazar",
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#FFF8E9"
-      },
       "versionCode": 1
     },
-    "plugins": [
-      [
-        "expo-splash-screen",
-        {
-          "image": "./assets/splash.png",
-          "imageWidth": 250,
-          "resizeMode": "contain",
-          "backgroundColor": "#FFF8E9"
-        }
-      ]
-    ],
-    "icon": "./assets/icon.png",
     "platforms": [
       "android"
     ]
